@@ -1,27 +1,39 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "backend server ",
-  "license": "MIT",
-  "author": "Hezron Nyamboga",
-  "type": "commonjs",
-  "main": "server.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "dotenv": "^17.4.2",
-    "drizzle-orm": "^0.45.2",
-    "express": "^5.2.1",
-    "pg": "^8.20.0"
-  },
-  "devDependencies": {
-    "@types/dotenv": "^8.2.3",
-    "@types/express": "^5.0.6",
-    "@types/node": "^25.6.0",
-    "@types/pg": "^8.20.0",
-    "drizzle-kit": "^0.31.10",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
-  }
+	"name": "server",
+	"version": "1.0.0",
+	"description": "backend server ",
+	"license": "MIT",
+	"author": "Hezron Nyamboga",
+	"type": "module",
+	"main": "server.ts",
+	"scripts": {
+		"db:generate": "drizzle-kit generate",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio",
+		"db:migrate": "drizzle-kit migrate",
+		"db:drop": "drizzle-kit drop",
+		"db:reset": "drizzle-kit drop && drizzle-kit push",
+		"dev": "tsx watch src/server.ts",
+		"build": "tsc",
+		"start": "node dist/server.js",
+		"lint": "biome check --write",
+		"format": "biome format --write",
+		"check": "biome check",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"dotenv": "^17.4.2",
+		"drizzle-orm": "^0.45.2",
+		"express": "^5.2.1",
+		"pg": "^8.20.0"
+	},
+	"devDependencies": {
+		"@types/dotenv": "^8.2.3",
+		"@types/express": "^5.0.6",
+		"@types/node": "^25.6.0",
+		"@types/pg": "^8.20.0",
+		"drizzle-kit": "^0.31.10",
+		"tsx": "^4.21.0",
+		"typescript": "^6.0.2"
+	}
 }
