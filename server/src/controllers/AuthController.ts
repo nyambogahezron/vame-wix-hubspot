@@ -2,7 +2,8 @@ import type { Request, Response } from "express";
 import { AuthService } from "../services/AuthService.js";
 
 export async function startHubSpotAuth(req: Request, res: Response) {
-	const url = AuthService.getHubSpotAuthUrl();
+	const state = typeof req.query["state"] === "string" ? req.query["state"] : undefined;
+	const url = AuthService.getHubSpotAuthUrl(state);
 	res.redirect(url);
 }
 

@@ -7,12 +7,14 @@ import { eq } from "drizzle-orm";
 const hubspotClient = new Client();
 
 export class AuthService {
-	static getHubSpotAuthUrl() {
+	static getHubSpotAuthUrl(state?: string) {
 		const scopes = ["crm.objects.contacts.read", "crm.objects.contacts.write", "crm.schemas.contacts.read"];
 		return hubspotClient.oauth.getAuthorizationUrl(
 			env.HUBSPOT_CLIENT_ID!,
 			env.HUBSPOT_REDIRECT_URI!,
 			scopes.join(" "),
+			undefined,
+			state,
 		);
 	}
 

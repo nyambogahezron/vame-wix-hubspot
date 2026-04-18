@@ -19,7 +19,7 @@ export async function getMappings(req: Request, res: Response) {
 		.select()
 		.from(mappings)
 		.where(eq(mappings.integrationId, integration.id));
-	res.json(results);
+	return res.json(results);
 };
 
 export async function addMapping(req: Request, res: Response) {
@@ -42,5 +42,5 @@ export async function addMapping(req: Request, res: Response) {
 		transform,
 	});
 
-	res.json({ message: "Mapping added" });
+	return res.json({ message: "Mapping added" });
 };

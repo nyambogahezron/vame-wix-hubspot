@@ -1,65 +1,77 @@
-import Image from "next/image";
+import { ArrowRight, GitBranch, Link2, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-16 px-4 py-16 sm:px-6">
+      <section className="text-center">
+        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-orange-600 dark:text-orange-400">
+          Self-hosted integration
+        </p>
+        <h1 className="mx-auto max-w-2xl text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
+          Sync Wix and HubSpot on your terms
+        </h1>
+        <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+          Connect HubSpot with OAuth, map contact fields between Wix and
+          HubSpot, and run the stack on your own VPS or Docker host.
+        </p>
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link
+            href="/dashboard"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-zinc-900 px-8 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
+          >
+            Open dashboard
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+          <a
+            href="https://developers.hubspot.com/docs/api/oauth-quickstart-guide"
+            className="text-sm font-medium text-zinc-600 underline-offset-4 hover:underline dark:text-zinc-400"
+            target="_blank"
+            rel="noreferrer"
+          >
+            HubSpot OAuth overview
+          </a>
+        </div>
+      </section>
+
+      <section className="grid gap-6 sm:grid-cols-3">
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
+          <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/10 text-orange-600 dark:text-orange-400">
+            <Link2 className="h-5 w-5" aria-hidden />
+          </div>
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-50">
+            OAuth connection
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            Start HubSpot authorization from the dashboard; tokens are stored
+            server-side for your Wix site id.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
+          <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/10 text-orange-600 dark:text-orange-400">
+            <GitBranch className="h-5 w-5" aria-hidden />
+          </div>
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-50">
+            Field mappings
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            Map Wix fields to HubSpot contact properties with direction and
+            optional transforms.
+          </p>
         </div>
-      </main>
-    </div>
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50">
+          <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/10 text-orange-600 dark:text-orange-400">
+            <ShieldCheck className="h-5 w-5" aria-hidden />
+          </div>
+          <h2 className="font-semibold text-zinc-900 dark:text-zinc-50">
+            VPS-ready
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            Built as a simple monolith: Express API plus this Next.js UI,
+            aligned with self-hosted Linux deployments.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }

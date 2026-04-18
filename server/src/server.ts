@@ -6,6 +6,7 @@ import env from "./config/env.js";
 import authRouter from "./routers/authRouter.js";
 import webhookRouter from "./routers/webhookRouter.js";
 import mappingRouter from "./routers/mappingRouter.js";
+import integrationRouter from "./routers/integrationRouter.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(
 app.use("/auth", authRouter);
 app.use("/webhooks", webhookRouter);
 app.use("/api/mappings", mappingRouter);
+app.use("/api/integration", integrationRouter);
 
 app.get("/api/status", (_req, res) => {
 	res.json({ status: "ok", service: "wix-hubspot-integration" });

@@ -1,5 +1,4 @@
 import { Client } from "@hubspot/api-client";
-import axios from "axios";
 import { db } from "../database/connect.js";
 import { integrations, mappings, syncLedger } from "../database/schema/index.js";
 import { eq, and } from "drizzle-orm";
@@ -25,9 +24,6 @@ export class SyncService {
 			.select()
 			.from(mappings)
 			.where(eq(mappings.integrationId, integrationId));
-
-		const wixContactId = source === "wix" ? contactData.id : null;
-		const hubspotContactId = source === "hubspot" ? contactData.id : null;
 
 		// Check SyncLedger for loop prevention
 		const [ledgerEntry] = await db
@@ -76,6 +72,7 @@ export class SyncService {
 		}
 
 		const accessToken = await AuthService.getValidToken(integration.id);
+		if (!accessToken) throw new Error("Missing HubSpot access token");
 		hubspotClient.setAccessToken(accessToken);
 
 		let hubspotContactId = ledgerEntry?.hubspotContactId;
