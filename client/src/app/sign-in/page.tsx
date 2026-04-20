@@ -19,14 +19,20 @@ function SignInForm() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const result = await authClient.signIn.email({ email, password });
-    if (result.error) {
-      setError(result.error.message ?? "Sign in failed");
+    try {
+      const result = await authClient.signIn.email({ email, password });
+      if (result.error) {
+        setError(result.error.message ?? "Sign in failed");
+        setLoading(false);
+        return;
+      }
+      router.push(callbackUrl);
+      router.refresh();
+    } catch (err) {
+      console.error("Sign in network error:", err);
+      setError("Unable to connect to the server. Please ensure the backend is running.");
       setLoading(false);
-      return;
     }
-    router.push(callbackUrl);
-    router.refresh();
   };
 
   return (

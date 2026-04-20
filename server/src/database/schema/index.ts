@@ -1,5 +1,7 @@
 import { pgTable, serial, text, timestamp, integer, varchar } from "drizzle-orm/pg-core";
 
+export * from "./auth-schema.js";
+
 export const integrations = pgTable("integrations", {
 	id: serial("id").primaryKey(),
 	wixSiteId: varchar("wix_site_id", { length: 255 }).notNull().unique(),

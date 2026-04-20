@@ -17,18 +17,24 @@ export default function SignUpPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const result = await authClient.signUp.email({
-      email,
-      password,
-      name,
-    });
-    if (result.error) {
-      setError(result.error.message ?? "Could not create account");
+    try {
+      const result = await authClient.signUp.email({
+        email,
+        password,
+        name,
+      });
+      if (result.error) {
+        setError(result.error.message ?? "Could not create account");
+        setLoading(false);
+        return;
+      }
+      router.push("/dashboard");
+      router.refresh();
+    } catch (err) {
+      console.error("Sign up network error:", err);
+      setError("Unable to connect to the server. Please ensure the backend is running.");
       setLoading(false);
-      return;
     }
-    router.push("/dashboard");
-    router.refresh();
   };
 
   return (

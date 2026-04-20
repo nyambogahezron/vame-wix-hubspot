@@ -1,1 +1,0 @@
-{"version":3,"file":"SyncService.d.ts","sourceRoot":"","sources":["../../src/services/SyncService.ts"],"names":[],"mappings":"AAQA,qBAAa,WAAW;WACV,WAAW,CACvB,aAAa,EAAE,MAAM,EACrB,MAAM,EAAE,KAAK,GAAG,SAAS,EACzB,WAAW,EAAE,GAAG;mBA8CI,aAAa;mBAsCb,SAAS;IA8B9B,OAAO,CAAC,MAAM,CAAC,cAAc;mBAYR,YAAY;CAwBjC"}
