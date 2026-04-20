@@ -1,5 +1,6 @@
 import { ArrowLeftRight, House, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
+import { HeaderAuth } from "@/components/HeaderAuth";
 
 export function AppHeader() {
   return (
@@ -29,6 +30,7 @@ export function AppHeader() {
             <LayoutDashboard className="h-4 w-4" aria-hidden />
             Dashboard
           </Link>
+          <HeaderAuth />
         </nav>
       </div>
     </header>

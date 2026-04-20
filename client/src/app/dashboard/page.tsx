@@ -8,8 +8,10 @@ import {
   RefreshCw,
   Server,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { fetchApiStatus, getApiBase } from "@/lib/api";
+import { authClient } from "@/lib/auth-client";
 import type { IntegrationSummary } from "@/types/integration";
 import type { FieldMapping, MappingDirection } from "@/types/mapping";
 
@@ -20,6 +22,9 @@ function formatDirection(direction: string): string {
 }
 
 export default function Dashboard() {
+  const router = useRouter();
+  const { data: session, isPending: sessionPending } = authClient.useSession();
+
   const [wixSiteId, setWixSiteId] = useState("");
   const [hydrated, setHydrated] = useState(false);
 
@@ -47,6 +52,12 @@ export default function Dashboard() {
     setWixSiteId(stored ?? "test-site-id");
     setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    if (!sessionPending && !session?.user) {
+      router.replace("/sign-in?callbackUrl=/dashboard");
+    }
+  }, [sessionPending, session, router]);
 
   const persistWixSiteId = (value: string) => {
     setWixSiteId(value);
@@ -192,6 +203,17 @@ export default function Dashboard() {
   };
 
   const hubspotAuthUrl = `${getApiBase()}/auth/hubspot?state=${encodeURIComponent(wixSiteId)}`;
+
+  if (sessionPending || !session?.user) {
+    return (
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-4 py-24">
+        <Loader2 className="h-8 w-8 animate-spin text-zinc-400" aria-hidden />
+        <p className="mt-4 text-sm text-zinc-500">
+          {sessionPending ? "Checking session…" : "Redirecting to sign in…"}
+        </p>
+      </main>
+    );
+  }
 
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-10 sm:px-6">
